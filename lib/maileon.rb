@@ -1,5 +1,8 @@
 require "maileon/version"
 
 module Maileon
-  # Your code goes here...
+  class API
+    def initialize
+    end
+  end
 end
