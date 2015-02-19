@@ -9,3 +9,4 @@ rescue LoadError
 end
 
 task :default => :spec
+task :test => :spec
