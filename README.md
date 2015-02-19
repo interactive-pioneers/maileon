@@ -1,6 +1,6 @@
 # Maileon
 
-TODO: Write a gem description
+Ruby wrapper for Maileon email marketing software API.
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+_Work in progress_.
 
 ## Contributing
 
