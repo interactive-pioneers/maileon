@@ -3,3 +3,8 @@ language: ruby
 rvm:
   - 2.2.0
   - 2.1.0
+
+notifications:
+  hipchat:
+    rooms:
+      secure: GoqI71OtEPqW7KGShriAIKWW+R8gqMe1sYaiq2YPPE/X3+WF5jrd/JCEUZLt19H3njp7bOSR9n26hwc8jaLmJDmep2HU9aktQgQ+bxbJfQo0DLVHXgwomrarQhzchR0GFrUwuXmBFgf1V6dJC0VD67qTevlptZADrhOFhhrG+Q4=
