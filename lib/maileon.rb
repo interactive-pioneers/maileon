@@ -1,8 +1,2 @@
 require "maileon/version"
-
-module Maileon
-  class API
-    def initialize
-    end
-  end
-end
+require "maileon/api"
