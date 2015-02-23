@@ -32,24 +32,58 @@ describe Maileon::API do
       @maileon = Maileon::API.new
     end
 
-    it 'host' do
+    it 'should have host' do
       expect(@maileon).to have_attributes(:host => a_string_starting_with("https"))
     end
 
-    it 'path' do
+    it 'should have path' do
       expect(@maileon).to have_attributes(:path => a_string_starting_with("/"))
     end
 
-    it 'apikey' do
+    it 'should have apikey' do
       expect(@maileon).to have_attributes(:apikey => Base64.encode64(ENV['MAILEON_APIKEY']).strip)
     end
 
-    it 'debug' do
+    it 'should have debug' do
       expect(@maileon).to have_attributes(:debug => false)
     end
 
-    it 'session' do
+    it 'should have session' do
       expect(@maileon).to have_attributes(:session => be)
+    end
+
+  end
+
+  describe "create contact" do
+
+    before(:all) do
+      @maileon = Maileon::API.new
+    end
+
+    it 'should fail without parameters' do
+      expect { @maileon.create_contact() }.to raise_error(ArgumentError)
+    end
+
+    it 'should fail with empty parameters' do
+      expect { @maileon.create_contact({}) }.to raise_error(ArgumentError, "No parameters.")
+    end
+
+    it 'should fail without email' do
+      expect { @maileon.create_contact({:permission => 1}) }.to raise_error(ArgumentError, "Email is mandatory to create contact.")
+    end
+
+    it 'should throw validation error on invalid email' do
+      params = {
+        :email => 'dummy@email'
+      }
+      expect { @maileon.create_contact(params) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.")
+    end
+
+    it 'should not throw validation error on valid email' do
+      params = {
+        :email => 'dummy@email.com'
+      }
+      expect { @maileon.create_contact(params) }.not_to raise_error
     end
 
   end
