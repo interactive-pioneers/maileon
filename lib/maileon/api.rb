@@ -4,6 +4,8 @@ require 'excon'
 module Maileon
   class API
 
+    attr_accessor :host, :path, :apikey, :debug, :session
+
     def initialize(apikey=nil, debug=false)
       @host = 'https://api.maileon.com'
       @path = '/1.0/'
