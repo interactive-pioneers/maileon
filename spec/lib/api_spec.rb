@@ -54,9 +54,14 @@ describe Maileon::API do
     end
     context 'with invalid email' do
       it { expect { @maileon.create_contact({ :email => 'dummy@email' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+      it { expect { @maileon.create_contact({ :email => 'dummy@email.2' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+      it { expect { @maileon.create_contact({ :email => 'dummy@.2' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+      it { expect { @maileon.create_contact({ :email => '@dummy.de' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
     end
     context 'with valid email' do
      it { expect { @maileon.create_contact({ :email => 'dummy@email.com' }) }.not_to raise_error }
+     it { expect { @maileon.create_contact({ :email => 'dummy@some.email.de' }) }.not_to raise_error }
+     it { expect { @maileon.create_contact({ :email => 'dummy.some+filter@email.some-tld.de' }) }.not_to raise_error }
     end
   end
 end
