@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'dotenv'
 require 'excon'
 require 'support/mock_maileon'
 

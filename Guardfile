@@ -27,6 +27,5 @@ guard :rspec, cmd: 'rspec' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/maileon/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
-  watch('.env')  { "spec" }
   watch('spec/support/mock_maileon.rb')  { "spec" }
 end
