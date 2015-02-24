@@ -1,5 +1,6 @@
 require 'base64'
 require 'excon'
+require 'json'
 
 module Maileon
   class API
@@ -21,6 +22,10 @@ module Maileon
       @session = Excon.new @host, :debug => debug
     end
 
+    def ping
+      @session.get(:path => "#{@path}/ping", :headers => get_headers)
+    end
+
     def create_contact(params, body={})
       raise ArgumentError.new("No parameters.") if params.empty?
       raise ArgumentError.new("Email is mandatory to create contact.") if params[:email].nil?
@@ -31,11 +36,17 @@ module Maileon
       doi = params[:doi] ||= true
       doiplus = params[:doiplus] ||= true
       url = "contacts/#{email}?permission=#{permission}&sync_mode=#{sync_mode}&doi=#{doi}&doiplus=#{doiplus}"
-      # TODO enable POST, add tests
-      #@session.post(:path => "#{@path}#{url}", :headers => get_headers, :expects => [200, 201], :body => body.to_json)
+      @session.post(:path => "#{@path}contacts", :headers => get_headers, :body => body.to_json)
     end
 
     private
+
+    def get_headers(type='json')
+      {
+        "Content-Type" => "application/vnd.maileon.api+#{type}; charset=utf-8",
+        "Authorization" => "Basic #{@apikey}"
+      }
+    end
 
     def is_valid_email(email)
       !/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/.match(email).nil?

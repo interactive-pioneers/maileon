@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'dotenv'
 require 'excon'
+require 'support/mock_maileon'
 
 describe Maileon::API do
 
@@ -29,19 +30,24 @@ describe Maileon::API do
     end
   end
 
-  describe 'ping' do
-    before(:all) do
-      skip "Not implemented"
-      @maileon = Maileon::API.new
+  describe '.ping' do
+    context 'with invalid API key' do
+      it {
+        @maileon = Maileon::API.new('9320293t90gaksdf5900434')
+        expect(@maileon.ping.status).to eq 401
+      }
     end
-    it 'should respond with 200' do
-      # TODO implement
+    context 'with valid API key' do
+      it {
+        @maileon = Maileon::API.new(MockMaileon::API_KEY)
+        expect(@maileon.ping.status).to eq 200
+      }
     end
   end
 
-  describe 'subscription' do
+  describe '.create_contact' do
     before(:all) do
-      @maileon = Maileon::API.new
+      @maileon = Maileon::API.new(MockMaileon::API_KEY)
     end
     context 'without parameters' do
       it { expect { @maileon.create_contact() }.to raise_error(ArgumentError) }
@@ -62,6 +68,13 @@ describe Maileon::API do
      it { expect { @maileon.create_contact({ :email => 'dummy@email.com' }) }.not_to raise_error }
      it { expect { @maileon.create_contact({ :email => 'dummy@some.email.de' }) }.not_to raise_error }
      it { expect { @maileon.create_contact({ :email => 'dummy.some+filter@email.some-tld.de' }) }.not_to raise_error }
+     it { expect(@maileon.create_contact({ :email => 'dummy@tld.de' }).status).to eq 200 }
+    end
+    context 'with invalid API key' do
+     it {
+       @maileon = Maileon::API.new('219049tigadkv9f095t03tk2')
+       expect(@maileon.create_contact({ :email => 'dummy@tld.de' }).status).to eq 401
+     }
     end
   end
 end
