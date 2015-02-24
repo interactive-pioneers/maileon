@@ -1,10 +1,6 @@
 require 'sinatra/base'
 
 class MockMaileon < Sinatra::Base
-  #get '/contacts/:email?permission=:permission&sync_mode=:sync_mode&doi=:doi&doiplus=:doiplus' do
-  #post %r{^(?!/admin/.*$)(.*)} do |content|
-    #raise "Oh crap!"
-  #end
 
   API_KEY = 'adsfadsi4292r0vajsfdafldkaf'
 
