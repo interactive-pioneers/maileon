@@ -36,8 +36,7 @@ module Maileon
       doi = params[:doi] ||= true
       doiplus = params[:doiplus] ||= true
       url = "contacts/#{email}?permission=#{permission}&sync_mode=#{sync_mode}&doi=#{doi}&doiplus=#{doiplus}"
-      # FIXME use url in the request, adjust mock system
-      @session.post(:path => "#{@path}contacts", :headers => get_headers, :body => body.to_json)
+      @session.post(:path => "#{@path}#{url}", :headers => get_headers, :body => body.to_json)
     end
 
     def delete_contact(params)

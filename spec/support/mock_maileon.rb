@@ -4,7 +4,7 @@ class MockMaileon < Sinatra::Base
 
   API_KEY = 'adsfadsi4292r0vajsfdafldkaf'
 
-  post '/1.0/contacts' do
+  post '/1.0/contacts/:email' do
     json_response is_valid_api_key? ? 200 : 401, 'create_contact.json'
   end
 
