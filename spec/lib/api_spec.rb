@@ -55,7 +55,7 @@ describe Maileon::API do
       it { expect { @maileon.create_contact({}) }.to raise_error(ArgumentError, "No parameters.") }
     end
     context 'without email' do
-      it { expect { @maileon.create_contact({:permission => 1}) }.to raise_error(ArgumentError, "Email is mandatory to create contact.") }
+      it { expect { @maileon.create_contact({:permission => 1}) }.to raise_error(ArgumentError, "Email is mandatory.") }
     end
     context 'with invalid email' do
       it { expect { @maileon.create_contact({ :email => 'dummy@email' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
@@ -76,4 +76,38 @@ describe Maileon::API do
      }
     end
   end
+
+  describe '.delete_contact' do
+    before(:all) do
+      @maileon = Maileon::API.new(MockMaileon::API_KEY)
+    end
+    context 'without parameters' do
+      it { expect { @maileon.delete_contact() }.to raise_error(ArgumentError) }
+    end
+    context 'with empty parameters' do
+      it { expect { @maileon.delete_contact({}) }.to raise_error(ArgumentError, "No parameters.") }
+    end
+    context 'without email' do
+      it { expect { @maileon.delete_contact({:permission => 1}) }.to raise_error(ArgumentError, "Email is mandatory.") }
+    end
+    context 'with invalid email' do
+      it { expect { @maileon.delete_contact({ :email => 'dummy@email' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+      it { expect { @maileon.delete_contact({ :email => 'dummy@email.2' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+      it { expect { @maileon.delete_contact({ :email => 'dummy@.2' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+      it { expect { @maileon.delete_contact({ :email => '@dummy.de' }) }.to raise_error(Maileon::Errors::ValidationError, "Invalid email format.") }
+    end
+    context 'with valid email' do
+     it { expect { @maileon.delete_contact({ :email => 'dummy@email.com' }) }.not_to raise_error }
+     it { expect { @maileon.delete_contact({ :email => 'dummy@some.email.de' }) }.not_to raise_error }
+     it { expect { @maileon.delete_contact({ :email => 'dummy.some+filter@email.some-tld.de' }) }.not_to raise_error }
+     it { expect(@maileon.delete_contact({ :email => 'dummy@tld.de' }).status).to eq 200 }
+    end
+    context 'with invalid API key' do
+     it {
+       @maileon = Maileon::API.new('219049tigadkv9f095t03tk2')
+       expect(@maileon.delete_contact({ :email => 'dummy@tld.de' }).status).to eq 401
+     }
+    end
+  end
+
 end

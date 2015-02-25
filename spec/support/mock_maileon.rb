@@ -8,6 +8,10 @@ class MockMaileon < Sinatra::Base
     json_response is_valid_api_key? ? 200 : 401, 'create_contact.json'
   end
 
+  delete '/1.0/contacts/:email' do
+    json_response is_valid_api_key? ? 200 : 401, 'delete_contact.json'
+  end
+
   get '/1.0/ping' do
     json_response is_valid_api_key? ? 200 : 401, 'ping.json'
   end

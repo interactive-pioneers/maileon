@@ -28,7 +28,7 @@ module Maileon
 
     def create_contact(params, body={})
       raise ArgumentError.new("No parameters.") if params.empty?
-      raise ArgumentError.new("Email is mandatory to create contact.") if params[:email].nil?
+      raise ArgumentError.new("Email is mandatory.") if params[:email].nil?
       raise Maileon::Errors::ValidationError.new("Invalid email format.") unless is_valid_email(params[:email])
       email = URI::escape(params[:email])
       permission = params[:permission] ||= 1
@@ -36,7 +36,17 @@ module Maileon
       doi = params[:doi] ||= true
       doiplus = params[:doiplus] ||= true
       url = "contacts/#{email}?permission=#{permission}&sync_mode=#{sync_mode}&doi=#{doi}&doiplus=#{doiplus}"
+      # FIXME use url in the request, adjust mock system
       @session.post(:path => "#{@path}contacts", :headers => get_headers, :body => body.to_json)
+    end
+
+    def delete_contact(params)
+      raise ArgumentError.new("No parameters.") if params.empty?
+      raise ArgumentError.new("Email is mandatory.") if params[:email].nil?
+      raise Maileon::Errors::ValidationError.new("Invalid email format.") unless is_valid_email(params[:email])
+      email = URI::escape(params[:email])
+      url = "contacts/#{email}"
+      @session.delete(:path => "#{@path}#{url}", :headers => get_headers('xml'))
     end
 
     private
