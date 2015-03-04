@@ -1,7 +1,3 @@
-require 'base64'
-require 'excon'
-require 'json'
-
 module Maileon
   class API
 
