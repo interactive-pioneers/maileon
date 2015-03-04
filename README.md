@@ -1,4 +1,4 @@
-# Maileon [![Build Status](http://travis-ci.org/interactive-pioneers/maileon.svg?branch=master)](https://travis-ci.org/interactive-pioneers/maileon)
+# Maileon [![Build Status](http://travis-ci.org/interactive-pioneers/maileon.svg?branch=master)](https://travis-ci.org/interactive-pioneers/maileon) [![Gem Version](https://badge.fury.io/rb/maileon.svg)](http://badge.fury.io/rb/maileon)
 
 Ruby wrapper for Maileon email marketing software API.
 
