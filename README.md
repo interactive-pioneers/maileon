@@ -2,9 +2,7 @@
 
 Ruby wrapper for Maileon email marketing software API.
 
-## Requirements
-
-- Supported Ruby versions
+- Supported Ruby versions:
   - 2.2.1 (strongly recommended)
   - 2.1.0
   - 2.0.0
