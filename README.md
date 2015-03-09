@@ -1,5 +1,4 @@
-# Maileon [![Build
-Status](http://travis-ci.org/interactive-pioneers/maileon.svg?branch=master)](https://travis-ci.org/interactive-pioneers/maileon) [![Gem Version](https://badge.fury.io/rb/maileon.svg)](http://badge.fury.io/rb/maileon) [![Coverage Status](https://coveralls.io/repos/interactive-pioneers/maileon/badge.svg)](https://coveralls.io/r/interactive-pioneers/maileon)
+# Maileon [![Build Status](http://travis-ci.org/interactive-pioneers/maileon.svg?branch=master)](https://travis-ci.org/interactive-pioneers/maileon) [![Gem Version](https://badge.fury.io/rb/maileon.svg)](http://badge.fury.io/rb/maileon) [![Coverage Status](https://coveralls.io/repos/interactive-pioneers/maileon/badge.svg)](https://coveralls.io/r/interactive-pioneers/maileon)
 
 Ruby wrapper for Maileon email marketing software API.
 
