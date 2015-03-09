@@ -32,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-nav", "~> 0.2"
   spec.add_development_dependency "webmock", "~> 1.20"
   spec.add_development_dependency "sinatra", "~> 1.4"
+  spec.add_development_dependency "coveralls", "~> 0.7.11"
 end

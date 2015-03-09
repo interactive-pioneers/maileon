@@ -1,3 +1,8 @@
+require 'coveralls'
+
+# Code coverage
+Coveralls.wear!
+
 require 'pry'
 require 'maileon'
 require 'webmock/rspec'
