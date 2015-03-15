@@ -29,6 +29,12 @@ describe Maileon::API do
     end
   end
 
+  describe Maileon::API.new('asdfasdfasdfa', true) do
+    context 'with debug flag' do
+      it { is_expected.to have_attributes(:debug => true) }
+    end
+  end
+
   describe '.ping' do
     context 'with invalid API key' do
       it {
