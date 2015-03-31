@@ -29,9 +29,15 @@ module Maileon
       email = URI::escape(params[:email])
       permission = params[:permission] ||= 1
       sync_mode = params[:sync_mode] ||= 2
+      src = params[:src]
+      subscription_page = params[:subscription_page]
       doi = params[:doi] ||= true
       doiplus = params[:doiplus] ||= true
+      doimailing = params[:doimailing]
       url = "contacts/#{email}?permission=#{permission}&sync_mode=#{sync_mode}&doi=#{doi}&doiplus=#{doiplus}"
+      url << "&doimailing=#{doimailing}" if doimailing.present?
+      url << "&src=#{src}" if src.present?
+      url << "&subscription_page=#{subscription_page}" if subscription_page.present?
       @session.post(:path => "#{@path}#{url}", :headers => get_headers, :body => body.to_json)
     end
 
