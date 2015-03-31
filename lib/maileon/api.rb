@@ -35,9 +35,9 @@ module Maileon
       doiplus = params[:doiplus] ||= true
       doimailing = params[:doimailing]
       url = "contacts/#{email}?permission=#{permission}&sync_mode=#{sync_mode}&doi=#{doi}&doiplus=#{doiplus}"
-      url << "&doimailing=#{doimailing}" if doimailing.present?
-      url << "&src=#{src}" if src.present?
-      url << "&subscription_page=#{subscription_page}" if subscription_page.present?
+      url << "&doimailing=#{doimailing}" unless doimailing.nil?
+      url << "&src=#{src}" unless src.nil?
+      url << "&subscription_page=#{subscription_page}" unless subscription_page.nil?
       @session.post(:path => "#{@path}#{url}", :headers => get_headers, :body => body.to_json)
     end
 
