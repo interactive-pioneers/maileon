@@ -78,6 +78,14 @@ maileon.delete_contact(attribs)
 
 ## Contributing
 
+### Bug reports, suggestions
+
+- File all your issues, feature requests [here](https://github.com/ain/interactive-pioneers/maileon/issues)
+- If filing a bug report, follow the convention of _Steps to reproduce_ / _What happens?_ / _What should happen?_<!--[How to report a bug?](https://github.com/interactive-pioneers/conventions/blob/master/Bugtracking.md#how-to-report-a-bug) -->
+- __If you're a developer, write a failing test instead of a bug report__ and send a Pull Request
+
+### Code
+
 1. Fork it ( https://github.com/[my-github-username]/maileon/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Develop your feature by concepts of [TDD](http://en.wikipedia.org/wiki/Test-driven_development). Run `guard` in parallel to automatically run your tests
