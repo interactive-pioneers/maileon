@@ -92,3 +92,6 @@ maileon.delete_contact(attribs)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Licence
+Copyright © 2015 Interactive Pioneers GmbH. Licenced under [GPLv3](LICENSE).
