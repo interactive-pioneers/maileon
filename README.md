@@ -94,4 +94,4 @@ maileon.delete_contact(attribs)
 5. Create a new Pull Request
 
 ## Licence
-Copyright © 2015 Interactive Pioneers GmbH. Licenced under [GPLv3](LICENSE).
+Copyright © 2015, 2016 Interactive Pioneers GmbH. Licenced under [GPLv3](LICENSE).
