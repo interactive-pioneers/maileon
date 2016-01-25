@@ -81,7 +81,7 @@ maileon.delete_contact(attribs)
 ### Bug reports, suggestions
 
 - File all your issues, feature requests [here](https://github.com/interactive-pioneers/maileon/issues)
-- If filing a bug report, follow the convention of _Steps to reproduce_ / _What happens?_ / _What should happen?_
+- If filing a bug report, follow the guidelines of [How to report a bug?](http://conventions.interactive-pioneers.com/Bugtracking/#how-to-report-a-bug)
 - __If you're a developer, write a failing test instead of a bug report__ and send a Pull Request
 
 ### Code
