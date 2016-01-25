@@ -86,7 +86,7 @@ maileon.delete_contact(attribs)
 
 ### Code
 
-1. Fork it ( https://github.com/[my-github-username]/maileon/fork )
+1. Fork it ( https://github.com/[my-github-username]/maileon/fork )GPL-3.0
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Develop your feature by concepts of [TDD](http://en.wikipedia.org/wiki/Test-driven_development). Run `guard` in parallel to automatically run your tests
 3. Commit your changes (`git commit -am 'Add some feature'`)
@@ -94,4 +94,4 @@ maileon.delete_contact(attribs)
 5. Create a new Pull Request
 
 ## Licence
-Copyright © 2015, 2016 Interactive Pioneers GmbH. Licenced under [GPLv3](LICENSE).
+Copyright © 2015, 2016 Interactive Pioneers GmbH. Licenced under [GPL-3.0](LICENSE).
