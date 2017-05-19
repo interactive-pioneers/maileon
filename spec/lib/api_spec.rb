@@ -25,6 +25,7 @@ describe Maileon::API do
   describe Maileon::API.new('asdfasdfasdfa') do
     context 'when initiliased' do
       it { is_expected.to have_attributes(:host => a_string_starting_with("https://")) }
+      it { is_expected.to have_attributes(:path => a_string_starting_with("/")) }
       its(:config) { is_expected.to have_attributes(:apikey => Base64.encode64('asdfasdfasdfa').strip) }
       its(:config) { is_expected.to have_attributes(:debug => false) }
       it { is_expected.to have_attributes(:session => be) }
