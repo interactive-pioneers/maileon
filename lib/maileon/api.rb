@@ -1,21 +1,21 @@
 module Maileon
   class API
 
-    attr_accessor :host, :path, :apikey, :debug, :session
+    attr_accessor :host, :path, :config, :session
 
+    # XXX: parameters to be replaced with options parameter in 1.0.0.
     def initialize(apikey=nil, debug=false)
+
       @host = 'https://api.maileon.com'
       @path = '/1.0/'
 
-      unless apikey
-        apikey = ENV['MAILEON_APIKEY']
+      if apikey.nil? && !debug
+        @config = Maileon::Config.new
+      else
+        @config = Maileon::Config.new({ :apikey => apikey, :debug => debug })
       end
 
-      raise 'You must provide Maileon API key' unless apikey
-
-      @apikey = Base64.encode64(apikey).strip
-      @debug = debug
-      @session = Excon.new @host, :debug => debug
+      @session = Excon.new @host, :debug => @config.debug
     end
 
     def ping
@@ -55,7 +55,7 @@ module Maileon
     def get_headers(type='json')
       {
         "Content-Type" => "application/vnd.maileon.api+#{type}; charset=utf-8",
-        "Authorization" => "Basic #{@apikey}"
+        "Authorization" => "Basic #{@config.apikey}"
       }
     end
 

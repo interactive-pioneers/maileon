@@ -7,6 +7,7 @@ require 'pry'
 require 'maileon'
 require 'webmock/rspec'
 require 'support/mock_maileon'
+require 'rspec/its'
 
 # Do not allow external calls to API
 WebMock.disable_net_connect!(allow_localhost: true)

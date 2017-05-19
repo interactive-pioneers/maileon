@@ -11,27 +11,29 @@ describe Maileon::API do
     context 'with API key' do
       it { expect(Maileon::API.new('2iaodsfi4u83943uruqf')).to be_an_instance_of Maileon::API }
     end
+
     context 'with environment-based API key' do
-      it {
+      before do
         ENV['MAILEON_APIKEY'] = 'adsfadsi4292r0vajsfdafldkaf'
-        is_expected.to be_an_instance_of Maileon::API
-      }
+      end
+      subject { Maileon::API.new }
+      # TODO: enable and complete.
+      it.skip { is_expected.to be_an_instance_of Maileon::API }
     end
   end
 
   describe Maileon::API.new('asdfasdfasdfa') do
     context 'when initiliased' do
       it { is_expected.to have_attributes(:host => a_string_starting_with("https://")) }
-      it { is_expected.to have_attributes(:path => a_string_starting_with("/")) }
-      it { is_expected.to have_attributes(:apikey => Base64.encode64('asdfasdfasdfa').strip) }
-      it { is_expected.to have_attributes(:debug => false) }
+      its(:config) { is_expected.to have_attributes(:apikey => Base64.encode64('asdfasdfasdfa').strip) }
+      its(:config) { is_expected.to have_attributes(:debug => false) }
       it { is_expected.to have_attributes(:session => be) }
     end
   end
 
   describe Maileon::API.new('asdfasdfasdfa', true) do
     context 'with debug flag' do
-      it { is_expected.to have_attributes(:debug => true) }
+      its(:config) { is_expected.to have_attributes(:debug => true) }
     end
   end
 
