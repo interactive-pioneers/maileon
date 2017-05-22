@@ -50,10 +50,10 @@ module Maileon
         rescue Errno::ENOENT
           raise "YAML configuration file not found. Please ensure config/maileon.yml exists."
         rescue Psych::SyntaxError
-          raise "YAML configuration file with invalid syntax."
+          raise "YAML configuration file is invalid. Check syntax."
         end
       else
-        raise "Configuration not found. Please ensure config/maileon.yml exists."
+        raise "Configuration not found."
       end
       configure(config)
     end
