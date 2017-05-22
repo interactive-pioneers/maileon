@@ -14,10 +14,10 @@ module Maileon
 
       @valid_keys = @config.keys
 
-      if options.nil?
-        configure_with_yaml
-      else
+      unless options.nil?
         configure(options)
+      else
+        configure_with_yaml
       end
 
       process_api_code
@@ -48,21 +48,21 @@ module Maileon
         begin
           config = YAML.load_file(file)[Rails.env] if File.exists?(file)
         rescue Errno::ENOENT
-          log :warning, "YAML configuration file not found. Using defaults."
-          return
+          raise "YAML configuration file not found. Please ensure config/maileon.yml exists."
         rescue Psych::SyntaxError
-          log :warning, "YAML configuration file with invalid syntax. Using defaults."
-          return
+          raise "YAML configuration file with invalid syntax."
         end
+      else
+        raise "Configuration not found. Please ensure config/maileon.yml exists."
       end
       configure(config)
     end
 
     def process_api_code
-      if @config[:apikey].nil? && !ENV['MAILEON_APIKEY']
+      if @config[:apikey].nil? && !ENV['MAILEON_API_KEY']
         raise 'You must provide Maileon API key'
-      elsif @config[:apikey].nil? && ENV['MAILEON_APIKEY']
-        @config[:apikey] = ENV['MAILEON_APIKEY']
+      elsif ENV['MAILEON_API_KEY']
+        @config[:apikey] = ENV['MAILEON_API_KEY']
       end
       @config[:apikey] = Base64.encode64(@config[:apikey]).strip
     end

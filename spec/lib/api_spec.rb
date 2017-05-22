@@ -11,15 +11,6 @@ describe Maileon::API do
     context 'with API key' do
       it { expect(Maileon::API.new('2iaodsfi4u83943uruqf')).to be_an_instance_of Maileon::API }
     end
-
-    context 'with environment-based API key' do
-      before do
-        ENV['MAILEON_APIKEY'] = 'adsfadsi4292r0vajsfdafldkaf'
-      end
-      subject { Maileon::API.new }
-      # TODO: enable and complete.
-      it.skip { is_expected.to be_an_instance_of Maileon::API }
-    end
   end
 
   describe Maileon::API.new('asdfasdfasdfa') do
